@@ -1,0 +1,30 @@
+.ArticleContent {
+  padding: 0 50px 20px 50px;
+  width: 80vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid grey;
+  border-radius: 3px;
+  background-color: whitesmoke;
+  margin-bottom: 10px;
+
+  &__title {
+    text-align: center;
+  }
+  &__text {
+    text-align: justify;
+  }
+  &__img {
+    text-align: center;
+    img {
+      width: 200px;
+      height: auto;
+    }
+  }
+  &__btn {
+    width: 65px;
+    align-self: flex-end;
+  }
+}

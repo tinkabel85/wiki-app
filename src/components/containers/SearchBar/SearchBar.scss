@@ -1,0 +1,18 @@
+.SearchBar {
+  margin: 1.5em auto;
+  width: 50vw;
+  text-align: center;
+  &__input {
+    padding: 5px;
+    width: 50%;
+  }
+  &__input:focus {
+    outline: none;
+    border: 2px solid #555;
+  }
+  &__btn {
+    padding: 5px;
+    width: 70px;
+    cursor: pointer;
+  }
+}

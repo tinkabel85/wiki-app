@@ -1,14 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './components/containers/App/App';
-import './index.css';
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom/client";
+import App from "./components/containers/App/App";
+import "./index.css";
 
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Suspense
+      fallback={
+        <div className="text-center">
+          <div className="spinner-border text-secondary m-5" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
+      }
+    >
+      <App />
+    </Suspense>
   </React.StrictMode>
 );
 

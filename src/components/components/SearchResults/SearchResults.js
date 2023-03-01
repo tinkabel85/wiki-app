@@ -1,11 +1,13 @@
 import React from "react";
 import "./SearchResults.scss";
 
-function SearchResults({ searchResults, onClick }) {
+function SearchResults({ searchResultsResource, onClick }) {
+  const searchResults = searchResultsResource.read()
   const handleClick = (e, article) => {
     e.preventDefault();
-    onClick(article)
+    onClick(article);
   };
+
   return (
     <ul className="SearchResults">
       {searchResults.map((result) => (

@@ -1,24 +1,18 @@
-import { useState } from "react";
-import "./App.scss";
-import SearchResult from "../../components/SearchResults/SearchResults";
+import { useState, useMemo } from "react";
+import wikiSearchResource from "../../../Api/wikiSearchResource";
 import ArticleContent from "../../components/ArticleContent/ArticleContent";
+import SearchResult from "../../components/SearchResults/SearchResults";
 import SearchBar from "../SearchBar/SearchBar";
+import "./App.scss";
 
 function App() {
-  const [searchResults, setSearchResults] = useState([]);
-  const [selectedArticle, setSelectedArticle] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
+  const searchResultsResource = useMemo(
+    () => wikiSearchResource(searchInput),
+    [searchInput]
+  );
 
-  const handleSearch = (query) => {
-    fetch(
-      `https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${query}&exintro=&prop=extracts|pageimages&format=json&origin=*`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setSearchResults(Object.values(data.query.pages));
-        console.log(data.query);
-      })
-      .catch((err) => console.log(err));
-  };
+  const [selectedArticle, setSelectedArticle] = useState(null);
 
   const handleClick = (article) => {
     setSelectedArticle(article);
@@ -27,8 +21,8 @@ function App() {
   return (
     <>
       <div className="App">
-        <SearchBar onSearch={handleSearch} />
-        <SearchResult searchResults={searchResults} onClick={handleClick} />
+        <SearchBar onSearch={setSearchInput} />
+        <SearchResult searchResultsResource={searchResultsResource} onClick={handleClick} />
         {selectedArticle && (
           <ArticleContent
             article={selectedArticle}
